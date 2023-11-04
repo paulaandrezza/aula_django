@@ -3,4 +3,4 @@ from django.shortcuts import render
 
 
 def cadastro(request):
-  return HttpResponse('Faça seu cadastro')
+  return render(request, 'cadastro/index.html')
