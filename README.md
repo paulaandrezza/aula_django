@@ -29,10 +29,35 @@ pip install django
 pip install pillow
 ```
 
-Inicio um projeto Django
+Inicie um projeto Django
 
 ```bash
 django-admin startproject <nome_do_projeto> .
+```
+
+### Configurando arquivos estáticos
+
+Dentro de <nome_do_projeto>/settings.py digite:
+
+```python
+import os
+
+TEMPLATES = [
+    {
+        ...
+        #Para tornar o diretório raiz dinâmico idepentende do sistema operacional
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        ...
+    },
+]
+
+# Configurações para arquivos estaticos
+STATIC_URL = 'static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'templates/static'),)
+STATIC_ROOT = os.path.join('static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 ```
 
 ### Criando um novo app
