@@ -4,5 +4,10 @@
 {% endblock titulo %}
 {% load static %}
 {% block body %}
-  <h1>Olá</h1>
+  <form method="post" action="{% url "cadastro" %}">
+    {% csrf_token %}
+    <input type="text" placeholder="Nome..." name="nome">
+    <input type="email" placeholder="Email..." name="email">
+    <input type="submit">
+  </form>
 {% endblock body %}
