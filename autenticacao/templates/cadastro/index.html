@@ -1,3 +1,8 @@
-<h1>Nome: {{pessoa.nome}}</h1>
-<h1>Idade: {{pessoa.idade}}</h1>
-<h1>Profissao: {{pessoa.profissao}}</h1>
+{% extends "base.html" %}
+{% block titulo %}
+  Meu site
+{% endblock titulo %}
+{% load static %}
+{% block body %}
+  <h1>Olá</h1>
+{% endblock body %}

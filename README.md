@@ -35,6 +35,8 @@ Inicie um projeto Django
 django-admin startproject <nome_do_projeto> .
 ```
 
+<br>
+
 ### Configurando arquivos estáticos
 
 Dentro de <nome_do_projeto>/settings.py digite:
@@ -59,6 +61,8 @@ STATIC_ROOT = os.path.join('static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 ```
+
+<br>
 
 ### Criando um novo app
 
@@ -103,6 +107,8 @@ INSTALLED_APPS = [
 ]
 ```
 
+<br>
+
 ### Passando dados na renderização
 
 Para isso basta incluir um dicionario dentro de render dentro de `views.py` como no exemplo:
@@ -127,3 +133,19 @@ Para utilizar esses dados, basta referência-los no html dentro de chaves duplas
 <h1>Idade: {{idade}}</h1>
 <h1>Profissao: {{profissao}}</h1>
 ```
+
+<br>
+
+### Como mostrar imagens dentro do html
+
+Primeiro copie a imagem que deseja para dentro de `templates/static/img`, depois dentro do arquivo html, basta colocar o seguinte código:
+
+```html
+<!-- Para carregar a rota static que foi configurada em settings.py -->
+{% load static %}
+
+<!-- Renderizar a imagem -->
+<img src="{% static 'img/front-back-cat.jpg' %}" />
+```
+
+O mesmo vale para arquivos css e js que deseje inserir no html, a referência é feita utilizando o `static`
