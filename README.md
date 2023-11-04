@@ -1,5 +1,29 @@
 # aula_django
 
+## Requisitos
+
+### Extensões
+
+- [SQLite Viewer](https://marketplace.visualstudio.com/items?itemName=qwtel.sqlite-viewer) para visualizar o banco de dados no vs-code
+- [autopep8](https://marketplace.visualstudio.com/items?itemName=ms-python.autopep8) para formatar o código automaticamente
+- [Django](https://marketplace.visualstudio.com/items?itemName=batisteo.vscode-django) para sintaxe colorida no código django
+- [djLint](https://marketplace.visualstudio.com/items?itemName=monosans.djlint) para formatar o código django-html
+
+### JSON config
+
+```json
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ms-python.autopep8",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true
+  },
+  "emmet.includeLanguages": { "django-html": "html" },
+  "[django-html]": {
+    "editor.defaultFormatter": "monosans.djlint"
+  },
+```
+
 ## Configurações iniciais
 
 Primeiro vamos criar e ativar o ambiente virtual:
@@ -149,3 +173,41 @@ Primeiro copie a imagem que deseja para dentro de `templates/static/img`, depois
 ```
 
 O mesmo vale para arquivos css e js que deseje inserir no html, a referência é feita utilizando o `static`
+
+<br>
+
+### Banco de dados
+
+Nesse projeto iremos utilizar o sqlite3, que é o banco padrão que o projeto inicia, mas caso queira alterar o banco, é só mudar em `settings.py` o dicionario `DATABASES`:
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+```
+
+Para iniciar o banco de dados com as tabelas do django, no terminal digite:
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+Para criar tabelas no banco de dados, dentro de cada app, no arquivo `models.py` crie tabelas como no exemplo:
+
+```python
+from django.db import models
+from django.db.models.fields import CharField, EmailField
+
+
+class Pessoa(models.Model):
+    nome = CharField(max_length=100)
+    email = EmailField
+    senha = CharField(max_length=100)
+
+```
+
+Para salvar as informações no banco de dados é necessário realizar os comandos de `makemigrations` e `migrate` anteriores.
