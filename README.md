@@ -77,3 +77,28 @@ INSTALLED_APPS = [
 		'<nome_do_app>'
 ]
 ```
+
+### Passando dados na renderização
+
+Para isso basta incluir um dicionario dentro de render dentro de `views.py` como no exemplo:
+
+```python
+def cadastro(request):
+  nome = "Paula Marinho"
+  idade = "23"
+  profissao = "Programadora"
+
+  return render(request, 'cadastro/index.html', {
+    'nome': nome,
+    'idade': idade,
+    'profissao': profissao,
+  })
+```
+
+Para utilizar esses dados, basta referência-los no html dentro de chaves duplas `({{}})` como no exemplo:
+
+```html
+<h1>Nome: {{nome}}</h1>
+<h1>Idade: {{idade}}</h1>
+<h1>Profissao: {{profissao}}</h1>
+```
