@@ -50,6 +50,7 @@ Instale as bibliotecas:
 
 ```bash
 pip install django
+# Para lidar com imagens
 pip install pillow
 ```
 
