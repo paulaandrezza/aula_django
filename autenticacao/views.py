@@ -3,6 +3,8 @@ import json
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from .models import Pessoa
+
 
 def cadastro(request):
     if request.method == 'GET':
@@ -10,4 +12,7 @@ def cadastro(request):
     elif request.method == 'POST':
         nome = request.POST.get('nome')
         email = request.POST.get('email')
-        return HttpResponse(json.dumps({'nome': nome, 'email': email}))
+        senha = request.POST.get('senha')
+        pessoa = Pessoa(nome=nome, email=email, senha=senha)
+        pessoa.save()
+        return HttpResponse('Cadastro realizado com sucesso')

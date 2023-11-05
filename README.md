@@ -212,3 +212,16 @@ class Pessoa(models.Model):
 ```
 
 Para salvar as informações no banco de dados é necessário realizar os comandos de `makemigrations` e `migrate` anteriores.
+
+<br>
+
+### Salvando dados no banco de dados
+
+Para isso, basta dentro da função que é chamada quando acontece o envio dos dados instanciar um objeto da classe desejava e após passar os dados salva-lo no banco, como no exemplo abaixo:
+
+```python
+from .models import Pessoa
+    pessoa = Pessoa(nome=nome, email=email, senha=senha)
+    pessoa.save()
+```
+
