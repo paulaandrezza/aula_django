@@ -1,7 +1,7 @@
 import json
 
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import get_list_or_404, render
 
 from .models import Cargos, Pessoa
 
@@ -27,5 +27,5 @@ def listar(request):
 
 
 def listar_unico(request, id):
-    pessoa = Pessoa.objects.filter(id=id)
+    pessoa = get_list_or_404(Pessoa, id=id)
     return render(request, 'listar/index.html', {'pessoas': pessoa})

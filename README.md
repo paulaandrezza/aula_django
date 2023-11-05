@@ -242,3 +242,12 @@ Em views, quando criar a função da rota dinâmica, é preciso passar o paramet
 ```python
 def listar_unico(request, id):
 ```
+
+Para exibir o erro 404 quando o usuario não for encontrado, pode-se usar o `get_list_or_404` como no exemplo:
+
+```python
+from django.shortcuts import get_list_or_404
+
+def listar_unico(request, id):
+    pessoa = get_list_or_404(Pessoa, id=id)
+```
