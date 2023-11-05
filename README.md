@@ -251,3 +251,29 @@ from django.shortcuts import get_list_or_404
 def listar_unico(request, id):
     pessoa = get_list_or_404(Pessoa, id=id)
 ```
+
+### Criando filtros personalizados
+
+Eles servem para realizar transformações e formatações de dados diretamente nos modelos de template.
+O padrão para utiliza-los é criar uma pasta `templatetags` com um arquivo de `__init__.py` vazio dentro que serve para o Python reconhecer como um pacote, e um outro arquivo `.py` onde será criado os filtros, nesse projeto o nome do arquivo é `filtros.py`.
+Um exemplo de filtro se encontra abaixo:
+
+```python
+from django import template
+
+# Aqui, criamos uma instância de template.Library() chamada register
+register = template.Library()
+
+# O decorador @register.filter é usado para registrar a função meu_filtro como um filtro personalizado no sistema de modelos de template do Django
+@register.filter(name='teste')
+def teste(id):
+    return f"seu valor {id}"
+
+```
+
+Para utilizar o filtro, basta referência-lo no arquivo html e chamá-lo como no exemplo:
+
+```django-html
+{% load filtros %}
+{{ pessoa.id|teste }}
+```
