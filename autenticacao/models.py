@@ -1,11 +1,15 @@
 from django.db import models
-from django.db.models.fields import CharField, EmailField
+
+
+class Cargos(models.Model):
+    nome = models.CharField(max_length=20)
 
 
 class Pessoa(models.Model):
-    nome = CharField(max_length=100)
-    email = EmailField()
-    senha = CharField(max_length=100)
+    nome = models.CharField(max_length=100)
+    email = models.EmailField()
+    senha = models.CharField(max_length=100)
+    cargo = models.ForeignKey(Cargos, on_delete=models.DO_NOTHING)
 
     def __str__(self) -> str:
         return self.nome

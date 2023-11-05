@@ -201,13 +201,11 @@ Para criar tabelas no banco de dados, dentro de cada app, no arquivo `models.py`
 
 ```python
 from django.db import models
-from django.db.models.fields import CharField, EmailField
-
 
 class Pessoa(models.Model):
-    nome = CharField(max_length=100)
-    email = EmailField
-    senha = CharField(max_length=100)
+    nome = models.CharField(max_length=100)
+    email = models.EmailField()
+    senha = models.CharField(max_length=100)
 
 ```
 
@@ -225,3 +223,10 @@ from .models import Pessoa
     pessoa.save()
 ```
 
+### Modelando banco de dados
+
+Para inserir foreingKey em uma tabela, basta usar o models.ForeingKey como no exemplo, lembrando que a tabela referenciada deverá existir:
+
+```python
+cargo = models.ForeignKey(Cargos, on_delete=models.DO_NOTHING)
+```
