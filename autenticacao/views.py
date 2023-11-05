@@ -13,7 +13,10 @@ def cadastro(request):
         nome = request.POST.get('nome')
         email = request.POST.get('email')
         senha = request.POST.get('senha')
-        pessoa = Pessoa(nome=nome, email=email, senha=senha)
+
+        cargo = Cargos.objects.get(id=2)
+
+        pessoa = Pessoa(nome=nome, email=email, senha=senha, cargo=cargo)
         pessoa.save()
         return HttpResponse('Cadastro realizado com sucesso')
 
