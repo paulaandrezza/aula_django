@@ -16,3 +16,8 @@ def cadastro(request):
         pessoa = Pessoa(nome=nome, email=email, senha=senha)
         pessoa.save()
         return HttpResponse('Cadastro realizado com sucesso')
+
+
+def listar(request):
+    pessoas = Pessoa.objects.all()
+    return render(request, 'listar/index.html', {'pessoas': pessoas})
