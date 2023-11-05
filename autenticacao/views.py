@@ -24,3 +24,8 @@ def cadastro(request):
 def listar(request):
     pessoas = Pessoa.objects.all()
     return render(request, 'listar/index.html', {'pessoas': pessoas})
+
+
+def listar_unico(request, id):
+    pessoa = Pessoa.objects.filter(id=id)
+    return render(request, 'listar/index.html', {'pessoas': pessoa})

@@ -111,7 +111,7 @@ path('<rota>/', include('<nome_do_app>.urls')),
 from django.urls import include
 from . import views
 
-path('cadastro/', views.cadastro),
+path('cadastro/', views.cadastro, name="cadastro"),
 ```
 
 A rota `cadastro\` aponta pra função cadastro dentro de views, que pode ser criada da seguinte forma dentro do arquivo `views.py` que está dentro da mesma pasta do app, onde `index.html` é o arquivo que será renderizado, é importante que esse arquivo esteja dentro da pasta `templates` que precisa ser criada dentro da pasta do app:
@@ -211,6 +211,12 @@ class Pessoa(models.Model):
 
 Para salvar as informações no banco de dados é necessário realizar os comandos de `makemigrations` e `migrate` anteriores.
 
+Para inserir foreingKey em uma tabela, basta usar o models.ForeingKey como no exemplo, lembrando que a tabela referenciada deverá existir:
+
+```python
+cargo = models.ForeignKey(Cargos, on_delete=models.DO_NOTHING)
+```
+
 <br>
 
 ### Salvando dados no banco de dados
@@ -223,10 +229,16 @@ from .models import Pessoa
     pessoa.save()
 ```
 
-### Modelando banco de dados
+### URL Dinâmicas
 
-Para inserir foreingKey em uma tabela, basta usar o models.ForeingKey como no exemplo, lembrando que a tabela referenciada deverá existir:
+Para iniciar uma url dinâmica, primeiro é preciso declara-la em `urls.py` como no exemplo, onde o `<int:id>` define o tipo e o nome do parametro que será recebida dinamicamente:
 
 ```python
-cargo = models.ForeignKey(Cargos, on_delete=models.DO_NOTHING)
+path('listar/<int:id>', views.listar_unico, name="listar_unico"),
+```
+
+Em views, quando criar a função da rota dinâmica, é preciso passar o parametro na função, como no exemplo:
+
+```python
+def listar_unico(request, id):
 ```
