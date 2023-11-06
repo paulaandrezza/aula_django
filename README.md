@@ -310,3 +310,49 @@ admin.site.register(Pessoa)
 admin.site.register(Cargos)
 
 ```
+
+### Personalizar área administrativa
+
+## Personalização da tabela
+
+Para definir os campos que serão apresentados de uma tabela na área administrativa, basta configura-lo em `admin.py` como no exemplo, os valores que estão dentro da tupla serão os valores que serão mostrados na tabela, lembrando que os valores precisam ser escritos exatamente como foram declarados na `models.py`:
+
+```python
+@admin.register(Pessoa)
+class PessoaAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'email', 'senha')
+```
+
+Obs. O padrão que ele mostra é o `list_display = ("__str__",)`.
+
+## Definir campos como somente leitura
+
+Para isso basta utilizar a opção `readonly_fields` como no exemplo:
+
+```python
+readonly_fields = ('senha',)
+```
+
+## Adicionar campo de pesquisa, para encontrar registro nas tabelas:
+
+É possível definir em quais campos serão pesquisados, para isso basta incluir a opção `search_fields`, como no exemplo:
+
+```python
+search_fields = ("nome",)
+```
+
+## Filtrar resultados
+
+Pra isso basta utilizar a opção `list_filter` como no exemplo:
+
+```python
+list_filter = ('cargo',)
+```
+
+## Alterar parâmetros de um registro diretamente na tabela de registros
+
+Pra isso basta utilizar a opção `list_editable`, como no exemplo:
+
+```python
+list_editable = ('email',)
+```
