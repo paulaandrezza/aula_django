@@ -277,3 +277,31 @@ Para utilizar o filtro, basta referência-lo no arquivo html e chamá-lo como no
 {% load filtros %}
 {{ pessoa.id|teste }}
 ```
+
+<br>
+
+## Área administrativa
+
+para entrar na área administrativa, basta colocar a seguinte rota no navegador:
+
+```
+http://localhost:8000/admin/
+```
+
+Para criar um usuario admin, basta no terminal digital o comando e responder as perguntas para a criação do superusuario:
+
+```bash
+python manage.py createsuperuser
+```
+
+Para que as tabelas que foram criadas sejam mostradas na área administrativa, é preciso registra-las dentro do arquivo `admin.py` como no exemplo abaixo:
+
+```python
+from django.contrib import admin
+
+from .models import Cargos, Pessoa
+
+admin.site.register(Pessoa)
+admin.site.register(Cargos)
+
+```
