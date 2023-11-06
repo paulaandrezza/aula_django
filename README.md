@@ -78,6 +78,11 @@ TEMPLATES = [
     },
 ]
 
+# Configurações de idioma e time_zone
+LANGUAGE_CODE = 'pt-BR'
+
+TIME_ZONE = 'America/Sao_Paulo'
+
 # Configurações para arquivos estaticos
 STATIC_URL = 'static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'templates/static'),)
